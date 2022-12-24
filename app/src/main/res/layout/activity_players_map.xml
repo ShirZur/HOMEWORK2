@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".players_map"
+    android:background="@drawable/game_over_background"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/back_BTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BACK"
+        android:fontFamily="@font/simonetta_bold"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        >
+    </Button>
+
+    <FrameLayout
+        android:id="@+id/FRAME_list_player"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="20dp"
+
+        />
+
+    <FrameLayout
+        android:id="@+id/FRAME_map"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="20dp"
+
+        />
+
+</LinearLayout>

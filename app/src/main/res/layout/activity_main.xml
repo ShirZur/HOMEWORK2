@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/sky_sun3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/score_life"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:layout_width="190dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/game_IMG_heart1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/rainbow2" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/game_IMG_heart2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/rainbow2" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/game_IMG_heart3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/rainbow2" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/LBL_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="000"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="16dp"
+            />
+
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/panel_lanes"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/below_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/IMG_left"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:scaleType="fitStart"
+            android:layout_marginStart="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/left"
+
+            />
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/IMG_right"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:scaleType="fitEnd"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/right"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
