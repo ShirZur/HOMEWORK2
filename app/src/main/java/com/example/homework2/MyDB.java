@@ -11,12 +11,7 @@ public class MyDB {
     public MyDB() {    }
 
     public ArrayList<Record> getRecords() {
-        Collections.sort(records, new Comparator<Record>() {
-            @Override
-            public int compare(Record record1, Record record2) {
-                return record1.getScore() - record2.getScore();
-            }
-        });
+        Collections.sort(records, (record1, record2) -> record2.getScore() - record1.getScore());
 
         if(records.size() > 10){
             records.remove(0);

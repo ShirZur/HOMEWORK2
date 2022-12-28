@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         mediaPlayer = MediaPlayer.create(context,R.raw.game_over);
         findViews();
         sensorOrButton();
-        //startGame(delay);
     }
 
     private SensorEventListener accSensorEventListener = new SensorEventListener() {
@@ -91,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void startGame(int delay) {
-
         game.setPanel_lanes(panel_lanes);
         game.insertImageView();
         updateTimerUI(delay);
@@ -136,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(choose == 1){
-          //  game.getPanel_below_layout().setVisibility(View.VISIBLE);
             IMG_right.setVisibility(View.INVISIBLE);
             IMG_left.setVisibility(View.INVISIBLE);
             initSensor();

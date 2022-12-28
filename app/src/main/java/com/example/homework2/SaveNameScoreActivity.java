@@ -30,14 +30,14 @@ public class SaveNameScoreActivity extends AppCompatActivity {
     private double lat = 0.0;
     private double lon = 0.0;
     private SimpleLocation simpleLocation;
+    private String name;
+    private int score;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save_name_score);
-       // simpleLocation = new SimpleLocation(this);
-        //requestLocationPermissions(simpleLocation);
         end_score1_LBL = findViewById(R.id.end_score1_LBL);
         save_name_BTN = findViewById(R.id.save_name_BTN);
         name_editText = findViewById(R.id.name_editText);
@@ -47,37 +47,16 @@ public class SaveNameScoreActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        int score = intent.getIntExtra("theScore", 0);
+         score = intent.getIntExtra("theScore", 0);
         end_score1_LBL.setText("" + score);
 
 
         save_name_BTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = name_editText.getText().toString();
+                name = name_editText.getText().toString();
                 if (!name.isEmpty()) {
-                    MyDB myDB;
-                    String json = MSPv3.getInstance(getApplicationContext()).getStringSP("records", "");
-                    Log.d("abcd", json);
-                    myDB = new Gson().fromJson(json, MyDB.class);
-                    if (myDB == null) {
-                        myDB = new MyDB();
-                    }
-
-                    Record rec = new Record().setName(name).setScore(score).setLat(lat).setLon(lon);
-
-                    if (myDB.getRecords().size() < 10) {
-                        myDB.getRecords().add(rec);
-                    } else if (score > myDB.getRecords().get(0).getScore() && myDB.getRecords().size() >= 10) {
-                        myDB.getRecords().remove(0);
-                        myDB.getRecords().add(rec);
-                    }
-
-                    MSPv3.getInstance(getApplicationContext()).putStringSP("records", new Gson().toJson(myDB));
-
-                    Intent intent = new Intent(SaveNameScoreActivity.this, StartScreenView.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    startActivity(intent);
+                    saveDB();
                 } else {
                     Toast toast = Toast.makeText(getApplicationContext(), "YOU MUST PUT YOUR NAME!", Toast.LENGTH_LONG);
                     toast.show();
@@ -85,6 +64,30 @@ public class SaveNameScoreActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void saveDB(){
+        MyDB myDB;
+        String json = MSPv3.getInstance(getApplicationContext()).getStringSP("records", "");
+        myDB = new Gson().fromJson(json, MyDB.class);
+        if (myDB == null) {
+            myDB = new MyDB();
+        }
+
+        Record rec = new Record().setName(name).setScore(score).setLat(lat).setLon(lon);
+
+        if (myDB.getRecords().size() < 10) {
+            myDB.getRecords().add(rec);
+        } else if (score > myDB.getRecords().get(0).getScore() && myDB.getRecords().size() >= 10) {
+            myDB.getRecords().remove(0);
+            myDB.getRecords().add(rec);
+        }
+
+        MSPv3.getInstance(getApplicationContext()).putStringSP("records", new Gson().toJson(myDB));
+
+        Intent intent = new Intent(SaveNameScoreActivity.this, StartScreenView.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
     }
 
 
@@ -140,7 +143,6 @@ public class SaveNameScoreActivity extends AppCompatActivity {
         simpleLocation.beginUpdates();
         this.lat = simpleLocation.getLatitude();
         this.lon = simpleLocation.getLongitude();
-        System.out.println("this is lat"+ " "+lat);
     }
 
 
